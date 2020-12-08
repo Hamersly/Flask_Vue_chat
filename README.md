@@ -47,6 +47,6 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-##Important
+## Important
 
 Specify the required address of AJAX-requests in the file 'index.html'.
