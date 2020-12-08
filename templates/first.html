@@ -1,0 +1,61 @@
+<!doctype html>
+
+{% extends 'base.html' %}
+
+{% block title%}<title>Registration</title>{%endblock%}
+
+{% block styles %}
+	<style type="text/css">
+		body {
+			background: url(../static/fon.jpg) fixed;
+			background-size: cover;
+		}
+	</style>
+{% endblock%}
+
+{% block content %}
+<div class="container">
+	<div class="row d-flex justify-content-center" id="forma" >
+		<div class="col-auto">
+			<div class="container text-center"  id="titleLable">
+				<h1 data-text="CHAT"><strong>CHAT</strong></h1>
+				<div class="container" id="inputName">
+				    <form action="" method="post">
+				        %% form.csrf_token %%
+
+				        <div class="form-group">
+				            %% form.username(size=15) %%
+
+				            <div class="mt-4">
+				            	{% if form.username.errors %}
+									{% for error in form.username.errors %}
+										<div class="alert alert-danger" role="alert">
+											<h2 class="err">%% error %%</h2>
+										</div>
+									{% endfor %}
+								{% endif %}
+
+								{% with messages = get_flashed_messages() %}
+								{% if messages %}
+										{% for message in messages %}
+											<div class="alert alert-danger" role="alert">
+												<h2 class="err">%% message %%</h2>
+											</div>
+										{% endfor %}
+									{% endif %}
+								{% endwith %}
+								{% if form.csrf_token.errors %}
+									<div class="alert alert-danger" role="alert">
+										<h2 class="err">Срок "CSRF token" истёк.</h2>
+									</div>
+									
+								{% endif %}
+				            </div>
+				        </div>
+				    </form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}
